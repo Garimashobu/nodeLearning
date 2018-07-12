@@ -1,5 +1,6 @@
 var cloudinary = require('cloudinary');
 var async = require('async');
+var promise = require('promise');
 
 cloudinary.config({ 
     cloud_name: 'dnaawwqvl', 
@@ -23,3 +24,30 @@ cloudinary.config({
           uploadcb(err , 'upload done')
       })
   }
+
+
+  exports.upload1 = function(images){
+      var promised = new promise(function(res, rej){
+        console.log(typeof(images), images);
+    async.each(images, function(name, cb){
+      cloudinary.uploader.upload(__dirname+'/images/'+name, function(imageData, err) { 
+        if(imageData){
+            cb(null, imageData);
+        } else {
+            cb(err);
+        }
+        });
+
+    }, function(err){
+        console.log(">>> err" ,  err);
+        if(err){
+            rej(err)
+        }else{
+            res('images done');
+        }
+    })
+    })
+
+    return promised;
+    
+}
