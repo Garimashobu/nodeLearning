@@ -1,0 +1,18 @@
+Server side language, open source, run time environment, single threaded.
+
+Node is running on v8 engine which is build on C/C++
+
+
+Promise is solution of callback hell and callback hell is basically having multiple callbacks inside some function.
+
+export is used for exporting the JSONs, so there are two way for same
+1. export.name = "Garima"
+2. create an object like
+obj = {
+name: "Garima"
+}
+module.exports = obj;
+
+module.exports have more priority than exports as it returns the entire object.
+
+In package.json the devDependencies are which are required during development only like logger
